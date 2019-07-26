@@ -1,0 +1,17 @@
+#!/bin/zsh
+
+nmcli device wifi list
+
+if [ $1 = "ex" ] 
+then
+	nmcli device disconnect wlp2s0
+	nmcli device wifi connect n1 password 6cbh8bmdi9s6 ifname wlp62s0u1
+	echo "Success! Activated external card"
+elif [ $1 = "in" ]
+then
+	nmcli device disconnect wlp62s0u1
+	nmcli device wifi connect n1 password 6cbh8bmdi9s6 ifname wlp2s0
+	echo "Succes! Activated internal card"
+else
+	echo "Unrecognized argument! Try again!"
+fi
